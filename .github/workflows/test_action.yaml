@@ -22,5 +22,5 @@ jobs:
         python src/get_num_square.py
         
       env:
-        ENV_SECRET: ${{ secrets.AHOJ }} 
+        ENV_SECRET: ${{ env.AHOJ }} 
         REPO_SECRET: ${{ secrets.TESTSEKRET }}
