@@ -13,7 +13,9 @@ jobs:
         python-version: 3.8
         
     - name: Test env vars for python
-      run: python -c 'import os;print(os.environ)'
+      run: |
+      python -c 'import os;print(os.environ)'
+      python get_num_square.py
       env:
         ENV_SECRET: ${{ secrets.ENV_SECRET }} 
         REPO_SECRET: ${{ secrets.REPO_SECRET }} 

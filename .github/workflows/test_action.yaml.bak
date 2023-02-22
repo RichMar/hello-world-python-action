@@ -1,27 +1,19 @@
-name: Test Python Input
+name: python
 
-on:
-   workflow_dispatch:
-     inputs:
-       myInput:
-         description: 'User Input:'
-         required: true
-         default: "Hello World"
+on: push
 
 jobs:
-  run-python-test:
-   runs-on: ubuntu-latest
+  test_env:
+    environment: TEST_SECRET
+    runs-on: ubuntu-latest
     steps:
-  
-  - name: Checkout
-    uses: actions/checkout@v2.3.4
-  
-  - name: Setup Python
-    uses: actions/setup-python@v2.2.2
-    with:
-      python-version: 3.8
-  
-  - name: Execute Test Script
-    run: |
-      echo "Store: ${{ github.event.inputs.myInput }}"
-      INPUT_STORE=${{ github.event.inputs.myInput }} python3 test.py
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+        
+    - name: Test env vars for python
+      run: python -c 'import os;print(os.environ)'
+      env:
+        ENV_SECRET: ${{ secrets.ENV_SECRET }} 
+        REPO_SECRET: ${{ secrets.REPO_SECRET }} python3 get_num_square.py
