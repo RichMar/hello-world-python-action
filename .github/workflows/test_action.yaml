@@ -20,4 +20,4 @@ jobs:
         
       run: |
         python -c 'import os;print(os.environ)'
-        python src/get_num_square.py
+        python /home/runner/work/hello-world-python-action/src/get_num_square.py
