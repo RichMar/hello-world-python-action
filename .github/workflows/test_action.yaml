@@ -7,17 +7,20 @@ jobs:
     environment: TEST_SECRET
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.x'
         
     - name: Test env vars for python
    
-      env:
-        ENV_SECRET: ${{ secrets.ENV_SECRET }} 
-        REPO_SECRET: ${{ secrets.REPO_SECRET }} 
+    
         
       run: |
         python -c 'import os;print(os.environ)'
-        python /home/runner/work/hello-world-python-action/src/get_num_square.py
+        python src/get_num_square.py
+        
+      env:
+        ENV_SECRET: ${{ secrets.ENV_SECRET }} 
+        REPO_SECRET: ${{ secrets.REPO_SECRET }}
