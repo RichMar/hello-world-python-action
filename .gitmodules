@@ -1,0 +1,3 @@
+[submodule "hello-world-python-action"]
+	path = hello-world-python-action
+	url = https://github.com/RichMar/hello-world-python-action

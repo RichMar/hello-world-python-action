@@ -1,20 +1,19 @@
-# .github/workflows/test_action.yaml
-name: Test Action
-on: [push]
+name: python
+
+on: push
 
 jobs:
-  get-num-square:
+  test_env:
+    environment: TEST_SECRET
     runs-on: ubuntu-latest
-    name: Returns the number square
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Fetch num squared
-        id: get_square
-        uses: ./ # Uses an action in the root directory
-        # or use a released GitHub Action
-        # uses: shipyard/github-action/fetch-shipyard-env@1.0.0
-        with:
-          num: 11
-      - name: Print the square
-        run: echo "${{ steps.get_square.outputs.num_squared }}"
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+        
+    - name: Test env vars for python
+      run: python -c 'import os;print(os.environ)'
+      env:
+        ENV_SECRET: ${{ secrets.ENV_SECRET }} 
+        REPO_SECRET: ${{ secrets.REPO_SECRET }} 
