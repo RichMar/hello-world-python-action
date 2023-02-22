@@ -20,4 +20,4 @@ jobs:
         
       run: |
         python -c 'import os;print(os.environ)'
-        python get_num_square.py
+        python src/get_num_square.py
