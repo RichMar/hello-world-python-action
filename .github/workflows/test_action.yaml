@@ -21,7 +21,7 @@ jobs:
     steps:
      - uses: actions/checkout@v3
        with:
-          repository: ${{github.repository}}.wiki    # specify the wiki repo name here.
+             repository: ${{hello-world-python-action}}.wiki    # specify the wiki repo name here.
      - name: check wiki repo content
        run: |
           ls -al
