@@ -1,26 +1,48 @@
-name: python
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-on: push
+name: Python application
+
+##on:
+  ###schedule:
+    # * is a special character in YAML so you have to quote this string
+   # - cron:  '30 2 * * *'
+on:
+  push:
+    paths:
+      - 'wiki/**'
+    branches:
+      - master
 
 jobs:
-  test_env:
-    environment: TEST_SECRET
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
       with:
-        python-version: '3.x'
-        
-    - name: Test env vars for python
-   
+        python-version: "3.10"
+    - name: Install dependencies
     
-        
-      run: |
-        python -c 'import os;print(os.environ)'
-        python src/get_num_square.py
-        
       env:
-        ENV_SECRET: ${{ secrets.AHOJ }} 
-        REPO_SECRET: ${{ secrets.TESTSEKRET }}
+        REPO_SECRET: ${{ secrets.KEYOSMBZ }}
+    
+      run: |
+        python3 -m pip install requests
+        python3 -m pip install cryptography
+        python3 -m pip install -U gpx-converter
+        python3 -m pip install pandas-geojson
+        python wikipg.py
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "crongenerated"
+        git push
+        
+    - uses: OrlovM/Wiki-Action@v1
+      with:
+        path: 'wiki'
+        token: ${{ secrets.GITHUB_TOKEN }}
