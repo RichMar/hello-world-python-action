@@ -25,9 +25,14 @@ jobs:
      - name: check wiki repo content
        run: |
           ls -al
+     - name: Set up Python 3.10
+       uses: actions/setup-python@v3
+       with:
+         python-version: "3.10"
      - name: edit wiki
        run: |
-        echo test &gt;&gt; test.md
+        #echo test &gt;&gt; test.md
+        python wikipg.md
      - name: Commit files
        run: |
         git config --local user.email "action@github.com"
