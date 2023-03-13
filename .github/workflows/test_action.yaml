@@ -31,7 +31,7 @@ jobs:
          python-version: "3.10"
      - name: edit wiki
        run: |
-          python wikipg.md
+          python wikipg.py
      - name: Commit files
        run: |
         git config --local user.email "action@github.com"
