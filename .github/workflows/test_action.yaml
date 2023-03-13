@@ -21,7 +21,9 @@ jobs:
     steps:
      - name: Checkout
        uses: actions/checkout@v3
-     
+     - name: check main repo content
+       run: |
+          ls -al
      - name: Checkout wiki code
        uses: actions/checkout@v3
        with:
