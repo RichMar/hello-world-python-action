@@ -18,13 +18,18 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    steps:
+    - name: Checkout base code
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+        
+    - name: Checkout wiki code
+      uses: actions/checkout@v3
+      with:
+        repository: ${{github.repository}}.wiki
+        path: markdown    
     - name: Install dependencies
     
       env:
@@ -41,8 +46,12 @@ jobs:
         #git add .
         #git commit -m "crongenerated"
         #git push
-        
-    - uses: OrlovM/Wiki-Action@v1
-      with:
-        path: 'wiki'
-        token: ${{ secrets.RichMa }}
+        cd markdown
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git diff-index --quiet HEAD || git commit -m "Add changes" && git push
+    #- uses: OrlovM/Wiki-Action@v1
+    #  with:
+    #    path: 'wiki'
+    #    token: ${{ secrets.RichMa }}
