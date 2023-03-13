@@ -49,6 +49,7 @@ jobs:
         git add .
         git commit -m "Add changes"
      - name: Push changes to wiki repo
+       run: |
         cd markdown
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
