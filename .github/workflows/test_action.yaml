@@ -19,45 +19,45 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - name: check wiki repo content
-    - run: |
-        ls -al
-    - name: edit wiki
-      run: |
-        echo test &gt;&gt; test.md   
+      - name: check wiki repo content
+      - run: |
+         ls -al
+      - name: edit wiki
+        run: |
+          echo test &gt;&gt; test.md   
     #- name: Checkout base code
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+      - uses: actions/setup-python@v3
+        with:
+            python-version: "3.10"
         
-    - name: Checkout wiki code
-      uses: actions/checkout@v3
-      with:
-        repository: ${{github.repository}}.wiki
-        path: markdown    
-    - name: Install dependencies
+      - name: Checkout wiki code
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{github.repository}}.wiki
+          path: markdown    
+      - name: Install dependencies
     
-      env:
-        REPO_SECRET: ${{ secrets.KEYOSMBZ }}
+        env:
+          REPO_SECRET: ${{ secrets.KEYOSMBZ }}
     
-      run: |
-        #python3 -m pip install requests
-        #python3 -m pip install cryptography
-        #python3 -m pip install -U gpx-converter
-        #python3 -m pip install pandas-geojson
-        python wikipg.py
-        #git config user.name github-actions
-        #git config user.email github-actions@github.com
-        #git add .
-        #git commit -m "crongenerated"
-        #git push
-        cd markdown
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git diff-index --quiet HEAD || git commit -m "Add changes" && git push
+        run: |
+          #python3 -m pip install requests
+          #python3 -m pip install cryptography
+          #python3 -m pip install -U gpx-converter
+          #python3 -m pip install pandas-geojson
+          python wikipg.py
+          #git config user.name github-actions
+          #git config user.email github-actions@github.com
+          #git add .
+          #git commit -m "crongenerated"
+          #git push
+          cd markdown
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Add changes" && git push
     #- uses: OrlovM/Wiki-Action@v1
     #  with:
     #    path: 'wiki'
