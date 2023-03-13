@@ -7,12 +7,12 @@ name: Python application
   ###schedule:
     # * is a special character in YAML so you have to quote this string
    # - cron:  '30 2 * * *'
-on:
-  push:
-    paths:
-      - 'wiki/**'
-    branches:
-      - master
+on: push
+  #push:
+    #paths:
+     # - 'wiki/**'
+    #branches:
+     # - master
 
 jobs:
   build:
