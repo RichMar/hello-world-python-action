@@ -18,8 +18,8 @@ def import_csv(csvfilemame):
 
 data = import_csv('statistika.csv')
 last_row = data[-1]
-boduvOSM = data[-1][3]
-chb = 2171-int(boduvOSM)
+bodyvOSM = data[-1][3]
+chb = 2171-int(bodyvOSM)
 b = data[-1][2]
 # absolute_path = os.path.dirname(__file__)
 # relative_path = "BZ.wiki\Home.md"
@@ -43,7 +43,7 @@ for root, dirs, files in os.walk(Path.cwd()):
                     print('{}'.format(x + '\n'), end='')
                 elif 'v OSM" : ' in line:
                     a = line.find('v OSM" : ') + 9
-                    x = line.replace(line[a:], str(b))
+                    x = line.replace(line[a:], str(bodyvOSM))
                     print('{}'.format(x + '\n'), end='')
                 else:
                     print('{}'.format(line), end='')
