@@ -49,19 +49,19 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
         
-    #  - name: Check git
-   #     run: |
-     #    cd markdown
-     #    ls -al
-     #    git status
-     #    git show-ref
-      #   git config user.name github-actions
-      #   git config user.email github-actions@github.com
-     #    git fetch origin master
-     #    git pull origin master
-     #   git add -A
-      #   git commit -a -m "Added my project markdown"
-       #  git push origin master  
+     - name: Check git
+       run: |
+        cd markdown
+        ls -al
+        git status
+        git show-ref
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git fetch origin master
+        git pull origin master
+        git add -A
+        git commit -a -m "Added my project markdown"
+        git push origin master  
         
      # - name: Commit files
       #  run: |
