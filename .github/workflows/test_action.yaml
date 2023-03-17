@@ -63,16 +63,16 @@ jobs:
         git commit -a -m "Added my project markdown"
         git push origin master  
         
-     - name: Commit files
-       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Add changes"
-     - name: Push changes to wiki repo
-       run: |
-        cd markdown
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git diff-index --quiet HEAD || git commit -m "Add changes" && git push
+     # - name: Commit files
+      #  run: |
+       #  git config --local user.email "action@github.com"
+       #  git config --local user.name "GitHub Action"
+       #  git add .
+       #  git commit -m "Add changes"
+     # - name: Push changes to wiki repo
+      #  run: |
+      #   cd markdown
+      #   git config --local user.email "action@github.com"
+      #   git config --local user.name "GitHub Action"
+      #   git add .
+      #  git diff-index --quiet HEAD || git commit -m "Add changes" && git push
